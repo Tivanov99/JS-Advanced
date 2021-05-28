@@ -1,0 +1,18 @@
+function EqualNeighbors(input) {
+    let EqualsCount = 0;
+    for (let Row = 0; Row < input.length; Row++) {
+        for (let Col = 0; Col < input[Row].length; Col++) {
+            if (Row < input.length - 1) {
+                if (input[Row][Col] == input[Row + 1][Col] && input[Row][Col] === input[Row + 1][Col]) {
+                    EqualsCount++;
+                }
+            } else {
+                if (input[Row][Col] == input[Row][Col + 1] && input[Row][Col] === input[Row][Col + 1]) {
+                    EqualsCount++;
+                }
+            }
+
+        }
+    }
+    console.log(EqualsCount);
+}
