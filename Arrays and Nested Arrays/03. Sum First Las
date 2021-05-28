@@ -1,0 +1,7 @@
+function SumFirstAndLast(input) {
+    let FirstElement = Number.parseInt(input.shift());
+    let LastElement = Number.parseInt(input.pop());
+    return FirstElement + LastElement;
+}
+let result = SumFirstAndLast(['20', '30', '40']);
+console.log(result)
