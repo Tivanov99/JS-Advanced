@@ -1,0 +1,8 @@
+function BiggerHalf(input) {
+    let length = Math.floor(input.length / 2);
+    input.sort((a, b) => a - b);
+    let result = input.slice(length, (input.length));
+    return result;
+}
+let Out = BiggerHalf([3, 19, 14, 7, 2, 19, 6]);
+console.log(Out);
