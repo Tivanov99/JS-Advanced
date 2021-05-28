@@ -3,7 +3,9 @@ function EqualNeighbors(input) {
     for (let Row = 0; Row < input.length; Row++) {
         for (let Col = 0; Col < input[Row].length; Col++) {
             if (Row < input.length - 1) {
-                if (input[Row][Col] == input[Row + 1][Col] && input[Row][Col] === input[Row + 1][Col]) {
+                if (input[Row][Col] == input[Row][Col + 1] && input[Row][Col] === input[Row][Col + 1]) {
+                    EqualsCount++;
+                } else if (input[Row][Col] == input[Row + 1][Col] && input[Row][Col] === input[Row + 1][Col]) {
                     EqualsCount++;
                 }
             } else {
@@ -11,8 +13,7 @@ function EqualNeighbors(input) {
                     EqualsCount++;
                 }
             }
-
         }
     }
-    console.log(EqualsCount);
+    return EqualsCount;
 }
