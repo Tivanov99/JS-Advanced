@@ -1,0 +1,12 @@
+function DiagonalsSum(input) {
+    let First = 0;
+    let Second = 0;
+    for (let index = 0; index < input.length; index++) {
+        First += input[index][index];
+    }
+    let start = 0;
+    for (let index = input.length - 1; index >= 0; index--) {
+        Second += input[start++][index];
+    }
+    console.log(First, Second);
+}
