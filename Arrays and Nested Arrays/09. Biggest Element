@@ -1,0 +1,16 @@
+function BiggestElement(input) {
+    let BigNum = Number.MIN_SAFE_INTEGER;
+    for (let Row = 0; Row < input.length; Row++) {
+        for (let Col = 0; Col < input[Row].length; Col++) {
+            let CurrentNumber = input[Row][Col];
+            if (CurrentNumber > BigNum) {
+                BigNum = CurrentNumber;
+            }
+        }
+    }
+    return BigNum;
+}
+BiggestElement([
+    [20, 50, 10],
+    [8, 33, 145]
+])
