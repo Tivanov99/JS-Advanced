@@ -1,0 +1,18 @@
+function LastKElements(n, k) {
+    let Result = [1];
+    let previousKElements;
+    for (let index = 1; index < n; index++) {
+        let CurrSum = 0;
+        if (index < k) {
+            previousKElements = Result.slice(0, index);
+        } else {
+            previousKElements = Result.slice(Result.length - k, Result.length);
+        }
+        for (let element of previousKElements) {
+            CurrSum += element;
+        }
+        Result[index] = CurrSum;
+    }
+    return Result;
+}
+LastKElements(8, 2);
