@@ -1,0 +1,8 @@
+function ProcessOddPositions(input) {
+    let result = [];
+    for (let index = 1; index < input.length; index += 2) {
+        result.push(input[index] * 2);
+    }
+    return result.reverse().join(' ');
+}
+ProcessOddPositions([10, 15, 20, 25]);
