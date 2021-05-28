@@ -1,0 +1,14 @@
+function SmallestTwoNumbers(input) {
+    let results = [];
+    for (let Rotates = 0; Rotates < 2; Rotates++) {
+        let MinIndex = Rotates;
+        for (let index = 0; index < input.length; index++) {
+            if (input[MinIndex] > input[index]) {
+                MinIndex = index;
+            }
+        }
+        results.push(input.splice(MinIndex, 1));
+    }
+    console.log(results.join(' '));
+}
+SmallestTwoNumbers([30, 15, 50, 5]);
