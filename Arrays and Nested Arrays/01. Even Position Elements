@@ -1,0 +1,7 @@
+function EvenPositionElement(input) {
+    let Result = [];
+    for (let index = 0; index < input.length; index += 2) {
+        Result.push(input[index]);
+    }
+    console.log(Result.join(' '));
+}
