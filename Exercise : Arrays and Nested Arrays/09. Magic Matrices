@@ -1,0 +1,25 @@
+function MagicMatrices(matrix) {
+    let FristSum = 0;
+    for (let Column = 0; Column < matrix[0].length; Column++) {
+        FristSum += matrix[0][Column];
+    }
+    for (let Row = 0; Row < matrix.length; Row++) {
+        let CurrSum = 0;
+        for (let Cell = 0; Cell < matrix[Row].length; Cell++) {
+            CurrSum += matrix[Row][Cell];
+        }
+        if (CurrSum != FristSum) {
+            return false;
+        }
+    }
+    for (let Column = 0; Column < matrix[0].length; Column++) {
+        let CurrSum = 0;
+        for (let Row = 0; Row < matrix[Column].length; Row++) {
+            CurrSum += matrix[Column][Row];
+        }
+        if (CurrSum != FristSum) {
+            return false;
+        }
+    }
+    return true;
+}
