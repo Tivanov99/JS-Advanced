@@ -1,0 +1,11 @@
+function Rotatring(array, RotatingTimes) {
+    let RealRotatingTimes = Number.parseInt(RotatingTimes / array.length);
+    if (RealRotatingTimes == 0) {
+        RealRotatingTimes = RotatingTimes;
+    }
+    for (let index = 0; index < RealRotatingTimes; index++) {
+        let temp = array.pop();
+        array.unshift(temp);
+    }
+    console.log(array.join(' '));
+}
