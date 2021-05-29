@@ -1,0 +1,6 @@
+function solve(ListOfNames) {
+    ListOfNames.sort();
+    for (let index = 0; index < ListOfNames.length; index++) {
+        console.log(`${index+1}.${ListOfNames[index]}`)
+    }
+}
