@@ -1,0 +1,19 @@
+function solve(commands) {
+    let CurrentNumber = 1;
+    let array = [];
+    for (let index = 0; index < commands.length; index++) {
+        if (commands[index] == 'add') {
+            array.push(CurrentNumber++);
+        } else if (commands[index] == 'remove') {
+            if (array.length > 0) {
+                array.pop();
+            }
+            CurrentNumber++;
+        }
+    }
+    if (array.length == 0) {
+        console.log('Empty');
+    } else {
+        console.log(array.join('\n'));
+    }
+}
