@@ -1,0 +1,14 @@
+function solve(input) {
+    let array = [input[0]];
+    for (let index = 1; index < input.length; index++) {
+        let CurrentElement = input[index];
+        if (CurrentElement >= LastElement(array)) {
+            array.push(CurrentElement);
+        }
+    }
+
+    function LastElement(array) {
+        return array[array.length - 1];
+    }
+    return array;
+}
