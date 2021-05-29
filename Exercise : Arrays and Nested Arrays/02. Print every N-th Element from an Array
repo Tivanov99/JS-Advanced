@@ -1,0 +1,7 @@
+function Solve(Input, counter) {
+    let array = [];
+    for (let index = 0; index < Input.length; index += counter) {
+        array.push(Input[index]);
+    }
+    return array;
+}
