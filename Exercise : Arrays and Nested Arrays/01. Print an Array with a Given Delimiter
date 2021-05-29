@@ -1,0 +1,3 @@
+function Solve(Input, delimiter) {
+    console.log(Input.join(delimiter));
+}
