@@ -1,0 +1,13 @@
+function Sorting(input) {
+    input.sort((a, b) => a - b);
+    let Middle = Number.parseInt(input.length / 2);
+    let result = [];
+    let BiggestHalf = input.splice(Middle, input.length).sort((a, b) => b - a);
+    for (let index = 0; index < BiggestHalf.length; index++) {
+        if (input.length > index) {
+            result.push(input[index]);
+        }
+        result.push(BiggestHalf[index]);
+    }
+    return result;
+}
