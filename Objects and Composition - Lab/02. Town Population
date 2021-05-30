@@ -1,0 +1,15 @@
+function TownPopulation(input) {
+    let TownBook = {};
+    for (let index = 0; index < input.length; index++) {
+        let CurrentTown = input[index].split(' <-> ');
+        let CurrentPopulation = Number.parseInt(CurrentTown[1]);
+        if (TownBook[CurrentTown[0]]) {
+            TownBook[CurrentTown[0]] += CurrentPopulation;
+        } else {
+            TownBook[CurrentTown[0]] = CurrentPopulation;
+        }
+    }
+    for (const Current in TownBook) {
+        console.log(`${Current} : ${TownBook[Current]}`);
+    }
+}
