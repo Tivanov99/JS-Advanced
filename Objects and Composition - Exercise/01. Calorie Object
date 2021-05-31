@@ -1,0 +1,14 @@
+function Solve(input) {
+    let result = [];
+    for (let index = 1; index < input.length; index += 2) {
+        let Name = input[index - 1];
+        let Calories = input[index];
+        result.push({ Name, Calories });
+
+    }
+    let print = [];
+    for (const cur of result) {
+        print.push(`${cur.Name}: ${cur.Calories}`);
+    }
+    console.log(`{ ${[print.join(', ')]} }`)
+}
