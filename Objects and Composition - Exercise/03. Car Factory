@@ -1,0 +1,54 @@
+function Solve(Car) {
+    const Engines = {
+        SmallEngine: {
+            power: 90,
+            volume: 1800
+        },
+        NormalEngine: {
+            power: 120,
+            volume: 2400
+        },
+        ['Monster Engine']: {
+            power: 200,
+            volume: 3500
+        }
+    }
+    const Carriage = {
+        Hatchback: {
+            type: 'hatchback',
+            color: Car.color
+        },
+        Coupe: {
+            type: 'coupe',
+            color: Car.color
+        }
+    };
+
+    if (Car.power <= Engines.SmallEngine.power) {
+        delete Car.power;
+        Car.engine = Engines.SmallEngine;
+    } else if (Car.power <= Engines.NormalEngine.power) {
+        delete Car.power;
+        Car.engine = Engines.NormalEngine;
+    } else {
+        delete Car.power;
+        Car.engine = Engines["Monster Engine"];
+    }
+    delete Car.color;
+    if (Car.carriage == 'hatchback') {
+        Car.carriage = Carriage.Hatchback;
+    } else {
+        Car.carriage = Carriage.Coupe;
+    }
+    Car.wheelsize = Math.ceil(Car.wheelsize);
+    if (Car.wheelsize % 2 == 0) {
+        const ValueofWeels = Car.wheelsize -= 1;
+        delete Car.wheelsize;
+        Car.wheels = [ValueofWeels, ValueofWeels, ValueofWeels, ValueofWeels];
+    } else {
+        const ValueofWeels = Car.wheelsize;
+        delete Car.wheelsize;
+        Car.wheels = [ValueofWeels, ValueofWeels, ValueofWeels, ValueofWeels];
+    }
+    return Car;
+};
