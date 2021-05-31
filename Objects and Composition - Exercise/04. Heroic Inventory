@@ -1,0 +1,13 @@
+function Solve(input) {
+    let result = [];
+    for (let index = 0; index < input.length; index++) {
+        const CurrentCharacter = input[index].split(' / ');
+        result.push({
+            name: CurrentCharacter[0],
+            level: Number.parseInt(CurrentCharacter[1]),
+            items: CurrentCharacter[2].split(', ')
+        });
+    }
+    let output = JSON.stringify(result);
+    console.log(output);
+}
