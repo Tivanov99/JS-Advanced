@@ -1,0 +1,40 @@
+function solve(input) {
+    let Result = [];
+    for (let index = 0; index < input.length; index++) {
+        let CurrentLine = input[index].split(' : ');
+        let productName = CurrentLine[0];
+        let productPrice = Number.parseInt(CurrentLine[1]);
+        Result.push({ productName, productPrice });
+    }
+    Result.sort(function(a, b) {
+        var nameA = a.productName.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.productName.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        // names must be equal
+        return 0;
+    });
+
+    for (let index = 0; index < Result.length; index++) {
+        let currSymbol = Result[index].productName[0];
+        let lnght = 1;
+        for (let second = index + 1; second < Result.length; second++) {
+            let currentSecond = Result[second].productName[0];
+            if (currentSecond != currSymbol) {
+                break;
+            }
+            lnght++;
+        }
+        console.log(currSymbol);
+        let results = Result.slice(index, index + lnght);
+        for (let cur of results) {
+            console.log(`${cur.productName}: ${cur.productPrice}`);
+        }
+        index += lnght - 1;
+    }
+}
