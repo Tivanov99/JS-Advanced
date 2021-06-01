@@ -1,0 +1,11 @@
+function solve(input) {
+    let Result = [];
+    for (let index = 1; index < input.length; index++) {
+        let Splited = input[index].split(/\s*\|\s*/gim);
+        let first = Splited[1];
+        let second = Number(Number(Splited[2]).toFixed(2));
+        let third = Number(Number(Splited[3]).toFixed(2));
+        Result.push({ Town: first, Latitude: second, Longitude: third });
+    }
+    return JSON.stringify(Result);
+}
