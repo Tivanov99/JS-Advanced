@@ -1,0 +1,22 @@
+function createSortedList() {
+    let arr = [];
+    return {
+        add(element) {
+            arr.push(element);
+            this.size++;
+            arr.sort((a, b) => a - b);
+        },
+        remove(index) {
+            if (index >= 0 && index < arr.length) {
+                arr.splice(index, 1);
+                this.size--;
+            }
+        },
+        get(index) {
+            if (index < -1 || index < arr.length) {
+                return arr[index];
+            }
+        },
+        size: 0
+    }
+}
