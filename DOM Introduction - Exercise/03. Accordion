@@ -1,0 +1,12 @@
+function toggle() {
+    let Button = document.querySelector('.button');
+    let Text = document.querySelector('#extra');
+    if (Button.textContent == 'More') {
+        Button.textContent = 'Less';
+        Text.style.display = 'block';
+    } else {
+        Button.textContent = 'More';
+        Text.style.display = 'none';
+    }
+
+}
