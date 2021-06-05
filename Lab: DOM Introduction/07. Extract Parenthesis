@@ -1,0 +1,17 @@
+function extract(content) {
+    let Text = document.querySelector(`#${content}`).textContent;
+
+    let pattern = /\(([^)]+)\)/g;
+
+    let result = [];
+
+    let match = pattern.exec(Text);
+
+    while (match) {
+        console.log(match);
+        result.push(match[1])
+        match = pattern.exec(Text);
+    }
+
+    return result.join('; ');
+}
