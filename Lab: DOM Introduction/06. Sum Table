@@ -1,0 +1,12 @@
+function sumTable() {
+    let rows = document.querySelectorAll('table tr');
+    let sum = 0;
+    let index = 0;
+    for (let element of rows) {
+        if (index > 0) {
+            sum += Number(element.lastChild.textContent);
+        }
+        index++;
+    }
+    let result = document.querySelector('#sum').textContent = sum;
+}
