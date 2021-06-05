@@ -1,0 +1,39 @@
+function solve() {
+    let Text = document.querySelector('#text').value.split(' ');
+    let Converter = document.querySelector('#naming-convention').value;
+    let result = document.querySelector('#result');
+
+    if (Converter == "Camel Case") {
+        result.textContent = CamelCase(Text);
+    } else if (Converter == "Pascal Case") {
+        result.textContent = PascalCase(Text);
+    } else {
+        result.textContent = 'Error!';
+    }
+
+    function CamelCase(text) {
+        let Modifier = text[0].toLowerCase();
+        for (let index = 1; index < text.length; index++) {
+            Modifier += ConvertToCamel(text[index]);
+        }
+        return Modifier;
+    }
+
+    function ConvertToCamel(word) {
+        let curr = word.toLowerCase();
+        return (curr.charAt(0).toUpperCase() + curr.slice(1));
+    }
+
+    function PascalCase(text) {
+        let result = '';
+        for (let index = 0; index < text.length; index++) {
+            result += ConvertToPascal(text[index]);
+        }
+        return result;
+    }
+
+    function ConvertToPascal(word) {
+        let modi = word.toLowerCase();
+        return modi.charAt(0).toUpperCase() + modi.slice(1);
+    }
+}
