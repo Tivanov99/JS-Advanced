@@ -1,0 +1,14 @@
+function search() {
+    let Towns = document.querySelectorAll('#towns li');
+    let SearchedBy = document.querySelector('#searchText').value.toLowerCase();
+    let Counter = 0;
+    for (let element of Towns) {
+        let CurrentTown = element.textContent.toLowerCase();
+        if (CurrentTown.includes(SearchedBy)) {
+            element.style.textDecoration = 'underline';
+            element.style.fontWeight = 'bold';
+            Counter++;
+        }
+    }
+    let Result = document.querySelector('#result').textContent = `${Counter} matches found`;
+}
