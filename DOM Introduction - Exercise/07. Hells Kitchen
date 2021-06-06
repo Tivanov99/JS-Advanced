@@ -1,0 +1,112 @@
+function solve() {
+    document.querySelector('#btnSend').addEventListener('click', onClick);
+
+    function onClick() {
+        let OutPutForBestRestourants = document.querySelector('#bestRestaurant p');
+        let Restourants = JSON.parse(document.querySelector('textarea').value);
+        let SplitedRestourants = [];
+        let OutPutForBestWorkers = document.querySelector('#workers p');
+        for (let index = 0; index < Restourants.length; index++) {
+
+            let [RestourantName, workers] = Restourants[index].split(' - ');
+            let WorkersOBj = MakeWorkers(workers);
+            if (!ChekForAlreadyCreatedRestourant(SplitedRestourants, RestourantName, WorkersOBj)) {
+                let bigSal = BestSalary(WorkersOBj);
+                let middSal = AverageSal(WorkersOBj);
+                SplitedRestourants.push({
+                    name: RestourantName,
+                    Workers: [] = WorkersOBj,
+                    BiggestSalary: bigSal,
+                    AverageSalary: middSal
+                });
+            }
+
+        }
+        let BestResto = ChooseBestResto(SplitedRestourants);
+
+        OutPutForBestRestourants.textContent = `Name: ${BestResto.name} Average Salary: ${BestResto.AverageSalary} Best Salary: ${BestResto.BiggestSalary.toFixed(2)}`;
+        let wrksSorted = OuputWorkers(BestResto.Workers);
+        OutPutForBestWorkers.textContent = `${wrksSorted.join(' ')}`;
+
+        function OuputWorkers(wrks) {
+            let sorted = wrks.sort((a, b) => b.Salary - a.Salary);
+            let arr = [];
+            for (let w of sorted) {
+                arr.push(`Name: ${w.WorkerName} With Salary: ${w.Salary}`);
+            }
+            return arr;
+        }
+
+        function BestSalary(workers) {
+            let bestSalary = 0;
+            for (let worker of workers) {
+                if (worker.Salary > bestSalary) {
+                    bestSalary = worker.Salary;
+                }
+            }
+            return bestSalary;
+        }
+
+        function AverageSal(workers) {
+            let sal = 0;
+            for (let wrk of workers) {
+                sal += Number(wrk.Salary);
+            }
+            return (sal / workers.length).toFixed(2);
+        }
+
+        function MakeWorkers(workers) {
+            let splited = workers.split(', ');
+            let Obj = [];
+            for (let index = 0; index < splited.length; index++) {
+                let Current = splited[index].split(' ');
+                let Name = Current[0];
+                let salary = Number(Current[1]);
+                Obj.push({
+                    WorkerName: Name,
+                    Salary: salary
+                });
+            }
+            return Obj;
+        }
+
+        function ChekForAlreadyCreatedRestourant(restourants, currentResto, currentWrokers) {
+            for (let resto of restourants) {
+
+                if (resto.name == currentResto) {
+                    AddNewWorker(resto, resto.Workers, currentWrokers);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function AddNewWorker(resto, RestoWorkers, currentWorkers) {
+            for (let work of RestoWorkers) {
+                for (let currentWorker of currentWorkers) {
+                    let index = 0;
+                    if (work.WorkerName != currentWorker.WorkerName) {
+                        resto.Workers.push(currentWorker);
+                        currentWorkers.splice(index++, 1);
+                    }
+                }
+            }
+            resto.AverageSalary = AverageSal(resto.Workers);
+            resto.BiggestSalary = BestSalary(resto.Workers);
+        }
+
+        function ChooseBestResto(AllRestourants) {
+            let BestResto;
+            let BestMiddleSalary = 0;
+            for (let Restourant of AllRestourants) {
+                let curr = String(Restourant.AverageSalary);
+                let parser = Number.parseInt(curr);
+                if (BestMiddleSalary < parser) {
+                    BestResto = Restourant;
+                    BestMiddleSalary = parser;
+                }
+            }
+            return BestResto;
+        }
+    }
+}
