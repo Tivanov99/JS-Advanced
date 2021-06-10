@@ -1,1 +1,19 @@
+function create(words) {
+    let CreatedDivs = [];
+    for (let index = 0; index < words.length; index++) {
+        let CurrentDiv = document.createElement('div');
+        let CurrentPharagraph = document.createElement('p');
+        CurrentPharagraph.style.display = 'none';
 
+        CurrentPharagraph.textContent = words[index];
+        CurrentDiv.addEventListener('click', () => {
+            CurrentPharagraph.style.display = '';
+        })
+        CurrentDiv.appendChild(CurrentPharagraph);
+        CreatedDivs.push(CurrentDiv);
+    }
+    let IDs = document.querySelector('#content');
+    for (let element of CreatedDivs) {
+        IDs.appendChild(element);
+    }
+}
