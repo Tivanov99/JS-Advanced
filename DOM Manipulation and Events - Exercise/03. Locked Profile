@@ -1,0 +1,16 @@
+function lockedProfile() {
+    let Profiles = document.querySelectorAll('.profile');
+
+    for (let element of Profiles) {
+        element.children[10].addEventListener('click', () => {
+            if (element.children[10].textContent == 'Hide it' && element.children[2].checked == false) {
+                element.children[9].style.display = 'none';
+                element.children[10].textContent = 'Show more';
+            } else if (element.children[2].checked == false) {
+                element.children[9].style.display = 'block';
+                element.children[10].textContent = 'Hide it';
+            }
+        });
+    }
+
+}
