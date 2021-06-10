@@ -1,0 +1,17 @@
+function deleteByEmail() {
+    let SearchedEmail = document.querySelector('label input');
+    let AllRows = document.querySelectorAll('#customers tbody tr');
+    let Result = document.querySelector('#result');
+    let index = 0;
+    for (let element of AllRows) {
+        let CurrentEmail = (element.children[1].textContent);
+        if (CurrentEmail == SearchedEmail.value) {
+            let parent = element.parentNode;
+            parent.children[index].remove();
+            Result.textContent = 'Deleted.';
+            return;
+        }
+        Result.textContent = 'Not found.';
+        index++;
+    }
+}
