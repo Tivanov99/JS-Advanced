@@ -1,0 +1,11 @@
+function focused() {
+    let Sections = document.querySelectorAll('div div');
+    for (let element of Sections) {
+        element.children[1].addEventListener('focus', (e) => {
+            element.className = 'focused';
+        });
+        element.children[1].addEventListener('blur', (e) => {
+            element.className = '';
+        })
+    }
+}
