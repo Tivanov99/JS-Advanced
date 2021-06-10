@@ -1,0 +1,26 @@
+function addItem() {
+    let InputText = document.querySelector('#newItemText');
+
+    if (InputText.value.length == 0) {
+        return;
+    }
+    let Items = document.querySelector('#items');
+
+    let NewItem = document.createElement('li');
+    NewItem.textContent = (`${InputText.value}`);
+    InputText.value = '';
+
+    let remove = document.createElement('a');
+    let link = document.createTextNode('[Delete]');
+    remove.appendChild(link);
+    remove.href = '#';
+    remove.addEventListener('click', Delete);
+
+    NewItem.appendChild(remove);
+    Items.appendChild(NewItem);
+
+
+    function Delete() {
+        NewItem.remove();
+    }
+}
