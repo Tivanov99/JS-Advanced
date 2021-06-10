@@ -1,0 +1,7 @@
+function addItem() {
+    let InputText = document.querySelector('#newItemText').value;
+    let NewItem = document.createElement('li');
+    NewItem.textContent = InputText;
+    let Items = document.querySelector('#items');
+    Items.appendChild(NewItem);
+}
