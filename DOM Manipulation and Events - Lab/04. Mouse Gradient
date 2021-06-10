@@ -1,0 +1,16 @@
+function attachGradientEvents() {
+    let Gradient = document.querySelector('#gradient');
+    let Result = document.querySelector('#result');
+    Gradient.addEventListener('mousemove', MouseMoved);
+    Gradient.addEventListener('mouseout', Over);
+
+    function MouseMoved(event) {
+        let power = event.offsetX / (event.target.clientWidth - 1);
+        power = Math.trunc(power * 100);
+        Result.textContent = power + '%';
+    }
+
+    function Over() {
+        Result.textContent = '';
+    }
+}
