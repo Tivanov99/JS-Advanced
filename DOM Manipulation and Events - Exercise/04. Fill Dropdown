@@ -1,0 +1,12 @@
+function addItem() {
+    let Textitem= document.querySelector('#newItemText');
+    let ItemValue= document.querySelector('#newItemValue');
+    let Menu=document.querySelector('#menu');
+    let NewItem=document.createElement('option');
+    NewItem.textContent=Textitem.value;
+    NewItem.value=ItemValue.value;
+    Menu.appendChild(NewItem);
+    Textitem.value='';
+    ItemValue.value='';
+
+}
