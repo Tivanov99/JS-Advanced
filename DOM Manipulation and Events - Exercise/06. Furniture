@@ -1,0 +1,66 @@
+function solve() {
+  let input = document.querySelector('#exercise');
+  let GenerateButton = input.children[2];
+  GenerateButton.addEventListener('click', () => {
+    function CreateTd() {
+      let arrayOfTd = [];
+      for (let index = 0; index < 5; index++) {
+        arrayOfTd.push(document.createElement('td'));
+      }
+      return arrayOfTd;
+    }
+    let Parser = JSON.parse(input.children[1].value);
+    console.log(Parser);
+    let Table = document.querySelector('.table');
+    
+    for (let obj of Parser) {
+      let FRAME = document.createElement('tr');
+      let TD = CreateTd();
+      console.log(obj);
+      let CreateImg = document.createElement('img');
+      CreateImg.src = obj.img;
+      TD[0].appendChild(CreateImg);
+      FRAME.appendChild(TD[0]);
+
+      let ProductName = document.createElement('p');
+      ProductName.textContent = obj.name;
+      TD[1].appendChild(ProductName);
+      FRAME.appendChild(TD[1]);
+
+      let ProductPrice = document.createElement('p');
+      ProductPrice.textContent = obj.price;
+      TD[2].appendChild(ProductPrice);
+      FRAME.appendChild(TD[2]);
+
+      let DecorationFactor = document.createElement('p');
+      DecorationFactor.textContent = obj.decFactor;
+      TD[3].appendChild(DecorationFactor);
+      FRAME.appendChild(TD[3]);
+
+      let Check = document.createElement('input');
+      Check.setAttribute('type', 'checkbox');
+      TD[4].appendChild(Check);
+      FRAME.appendChild(TD[4]);
+
+      Table.children[1].appendChild(FRAME);
+    }
+
+  });
+  let BuyButton = input.lastElementChild;
+  BuyButton.addEventListener('click', () => {
+    let Names = [];
+    let Prices =0;
+    let totalDecorate=0;
+    let result=Array.from(document.querySelectorAll('input[type="checkbox"]'))
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.parentElement.parentElement);
+    for(let element of result){
+      Names.push(element.children[1].textContent);
+      Prices+=(Number(element.children[2].textContent));
+      totalDecorate+=Number(element.children[3].textContent);
+    }
+    let OutPut = (input.children[input.children.length - 2]);
+    OutPut.value += `Bought furniture: ${Names.join(', ')}\nTotal price: ${Prices.toFixed(2)}\nAverage decoration factor: ${totalDecorate/Names.length}`;
+
+  });
+}
