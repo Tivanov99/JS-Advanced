@@ -1,0 +1,30 @@
+function encodeAndDecodeMessages() {
+    let Main = document.querySelector('#main');
+
+    let SendButton = Main.children[0].children[2];
+    let SendText = Main.children[0].children[1];
+    
+    let ReceiverText=Main.children[1].children[1];
+    let ReceiverButton=Main.children[1].children[2];
+
+    SendButton.addEventListener('click', () => {
+        let CurrentText = SendText.value;
+        let EncodeText = [];
+        for (let index = 0; index < CurrentText.length; index++) {
+            let AssciCode = CurrentText.charCodeAt(index);
+            EncodeText.push(String.fromCharCode(AssciCode + 1));
+        }
+        SendText.value='';
+        ReceiverText.value=EncodeText.join('');
+    });
+
+    ReceiverButton.addEventListener('click',()=>{
+        let Text=ReceiverText.value;
+        let Fixed=[];
+        for (let index = 0; index < Text.length; index++) {
+            let AssciCode = Text.charCodeAt(index);
+           Fixed.push(String.fromCharCode(AssciCode - 1));
+        }
+        ReceiverText.value=Fixed.join('');
+    });
+}
