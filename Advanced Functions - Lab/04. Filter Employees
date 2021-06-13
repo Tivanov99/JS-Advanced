@@ -1,0 +1,15 @@
+function Solve(input, criteria) {
+    function ReturnCriteriaName(criteria) {
+        return criteria.split('-')[0];
+    }
+
+    function ReturnCriteriaValue(criteria) {
+        return criteria.split('-')[1];
+    }
+    let Employes = JSON.parse(input);
+    Employes = Employes.filter(x => x[ReturnCriteriaName(criteria)] == ReturnCriteriaValue(criteria));
+    let count = 0;
+    for (let element of Employes) {
+        console.log(`${count++}. ${element['first_name']} ${element['last_name']} - ${element.email}`);
+    }
+}
