@@ -1,0 +1,14 @@
+function getFibonator() {
+    let Current = 1;
+    let arr = [];
+    return function() {
+        if (arr.length <= 1) {
+            arr.push(1);
+            return 1;
+        } else {
+            let result = arr[arr.length - 2] + arr[arr.length - 1];
+            arr.push(result);
+            return result;
+        }
+    };
+}
