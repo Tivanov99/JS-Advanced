@@ -1,0 +1,13 @@
+function Sort(nums, criteria) {
+
+    let sw = {
+        asc() {
+            return nums.sort((a, b) => a - b);
+        },
+        desc() {
+            return nums.sort((a, b) => b - a);
+        }
+    }
+
+    return sw[criteria]();
+}
