@@ -1,0 +1,21 @@
+function solve(area, vol, input) {
+    let Parser = JSON.parse(input);
+    let Result = [];
+    for (let element of Parser) {
+        Result.push({
+            area: Math.abs(area.call(element)),
+            volume: Math.abs(vol.call(element)),
+        });
+    }
+    return Result;
+}
+
+function area() {
+    return Math.abs(this.x * this.y);
+};
+
+function vol() {
+    return Math.abs(this.x * this.y * this.z);
+};
+
+solve(area, vol, '[{"x":"1","y":"2","z":"10"},{"x":"7","y":"7","z":"10"},{"x":"5","y":"2","z":"10"}]');
