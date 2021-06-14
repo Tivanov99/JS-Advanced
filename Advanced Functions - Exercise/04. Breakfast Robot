@@ -1,0 +1,72 @@
+function solution() {
+    let WareHouse = {};
+    return function Robot(command) {
+        let splited = command.split(' ');
+        function Receptions(ReceptName) {
+            let sw = {
+                apple: {
+                    carbohydrate: 1,
+                    flavour: 2
+                },
+                lemonade: {
+                    carbohydrate: 10,
+                    flavour: 20
+                },
+                burger: {
+                    carbohydrate: 5,
+                    fat: 7,
+                    flavour: 3
+                },
+                eggs: {
+                    protein: 5,
+                    fat: 1,
+                    flavour: 1
+                },
+                turkey: {
+                    protein: 10,
+                    carbohydrate: 10,
+                    fat: 10,
+                    flavour: 10
+                }
+            }
+            return sw[ReceptName];
+        }
+        let Sw = {
+            restock() {
+                if(!WareHouse[splited[1]]){
+                    WareHouse[splited[1]] = Number.parseInt(splited[2]);
+                }else{
+                    WareHouse[splited[1]] += Number.parseInt(splited[2]);
+                }
+                return 'Success';
+            },
+            prepare() {
+                let WantedQuantity = Number(splited[2]);
+                let CurrentReception = Object.entries(Receptions(splited[1]));
+                let AvailableProducts = [];
+                for (let [Product, QuantityOFProduct] of CurrentReception) {
+                    let Needed = QuantityOFProduct * WantedQuantity;
+                    if (WareHouse[Product] >= Needed) {
+                        AvailableProducts.push({ [Product]: Needed });
+                        continue;
+                    }
+                    return (`Error: not enough ${Product} in stock `);
+                }
+                for (let el of AvailableProducts) {
+                   let splited=Object.entries(el);
+                    WareHouse[splited[0][0]] -= splited[0][1];
+                }
+                return 'Success';
+            },
+            report() {
+                let arr = [];
+                for (let [element, col] of Object.entries(WareHouse)) {
+                    arr.push(`${element}=${col}`);
+                }
+                return arr.join(' ');
+            }
+        }
+        let da = Sw[splited[0]]();
+        return da;
+    }
+};
