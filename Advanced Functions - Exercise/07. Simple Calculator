@@ -1,0 +1,19 @@
+function calculator() {
+    let FirstNum = '';
+    let Secondnum = '';
+    let result='';
+    return {
+        init(selector1, selector2, resultSelector) {
+            FirstNum = document.querySelector(`${[selector1]}`);
+            Secondnum = document.querySelector(`${[selector2]}`);
+            result=document.querySelector(`${[resultSelector]}`);
+        },
+        add(){
+            result.value= Number(Secondnum.value)+Number(FirstNum.value);
+        },
+        subtract(){
+            result.value=Number(FirstNum.value)-Number(Secondnum.value);
+        }
+
+    }
+}
