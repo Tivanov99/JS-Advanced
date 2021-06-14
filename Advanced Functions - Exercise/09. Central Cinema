@@ -1,0 +1,73 @@
+function solve() {
+    'ev.preventDefault();'
+    let InputElements = document.querySelector('#container');
+    let btn = InputElements.children[3];
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let MvName = InputElements.children[0];
+        let MvHall = InputElements.children[1];
+        let MvPrice = InputElements.children[2];
+        let clearItem=document.querySelector('#archive');
+        let clearbtn=clearItem.children[2];
+        clearbtn.addEventListener('click',()=>{
+            for(let element of clearItem.children[1].children){
+                clearItem.children[1].removeChild(element);
+            }
+        });
+        if (MvName.value != '' && MvHall.value != '' && Number.parseFloat(MvPrice.value)) {
+            let LI = document.createElement('li');
+            let span = document.createElement('span');
+            span.textContent = MvName.value;
+            LI.appendChild(span);
+            let strng = document.createElement('strong');
+            strng.textContent = `Hall: ${MvHall.value}`;
+            LI.appendChild(strng);
+
+            let div = document.createElement('div');
+            let strongPrice = document.createElement('strong');
+            let Parsed = Number.parseFloat(MvPrice.value).toFixed(2);
+            strongPrice.textContent = `${Parsed}`;
+            div.appendChild(strongPrice);
+            let Ph = document.createElement('input');
+            Ph.placeholder = 'Tickets Sold';
+            Ph.type = 'text';
+            div.appendChild(Ph);
+            let Archive = document.createElement('button');
+            Archive.textContent = 'Archive';
+            Archive.addEventListener('click', () => {
+
+                let arch = document.querySelector('#archive ul');
+                console.log(Ph.value);
+                if (Number.parseInt(Ph.value)) {
+                    let Count = Number.parseInt(Ph.value);
+                    let totalPrice = document.createElement('strong');
+                    let prc = Count * Parsed;
+                    totalPrice.textContent = `Total amount: ${prc.toFixed(2)}`;
+                    let DLBUTTON = document.createElement('button');
+                    DLBUTTON.textContent = 'Delete';
+                    DLBUTTON.addEventListener('click', () => {
+                        arch.removeChild(LI);
+                    })
+
+                    LI.removeChild(div);
+                    LI.removeChild(strng);
+                    LI.appendChild(totalPrice);
+                    LI.appendChild(DLBUTTON);
+                    arch.appendChild(LI);
+                }
+
+            })
+            div.appendChild(Archive);
+            LI.appendChild(div);
+            let Movies = document.querySelector('#movies ul');
+            Movies.appendChild(LI);
+            MvPrice.value = '';
+            MvName.value = '';
+            MvHall.value = '';
+        } else {
+            console.log('ne');
+        }
+    })
+
+}
