@@ -1,13 +1,10 @@
 function getArticleGenerator(articles) {
-    let art=articles;
-    let div=document.querySelector('#content');
-    return function slv(){
-        if(art.length>0){
-            let newElement=document.createElement('article');
-            newElement.textContent=art.splice(0,1);
-            newElement.style.border=' 2px solid blue';
-            newElement.style.padding='padding: 2em';
-            newElement.style.padding='margin: 1em';
+    let art = articles;
+    let div = document.querySelector('#content');
+    return function slv() {
+        if (art.length > 0) {
+            let newElement = document.createElement('article');
+            newElement.textContent = art.splice(0, 1);
             div.appendChild(newElement);
         }
     }
