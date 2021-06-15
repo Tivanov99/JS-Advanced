@@ -1,0 +1,72 @@
+function solve() {
+    let AddButton = document.querySelector('#add');
+    let Sections = document.querySelector('.wrapper');
+    AddButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        let TaskName = document.querySelector('#task');
+        let TaskDescription = document.querySelector('#description');
+        let TaskDate = document.querySelector('#date');
+
+        function isValidDate(dateString) {
+            var regEx = /^\d{4}.\d{2}.\d{2}$/;
+            if(!dateString.match(regEx)) return false;  // Invalid format
+            var d = new Date(dateString);
+            var dNum = d.getTime();
+            if(!dNum && dNum !== 0) return false; // NaN value, Invalid date
+            return true;
+          }
+
+        if (TaskName.value != '' && TaskDescription.value != '' && isValidDate(TaskDate.value)) {
+            let Orange = Sections.children[1];
+            let NewArticle = document.createElement('article');
+
+            let H3 = document.createElement('h3');
+            H3.textContent = TaskName.value;
+            NewArticle.appendChild(H3);
+
+            let P1 = document.createElement('p');
+            P1.textContent = `Description: ${TaskDescription.value}`;
+            NewArticle.appendChild(P1);
+
+            let P2 = document.createElement('p');
+            P2.textContent = `Due Date: ${TaskDate.value}`;
+            NewArticle.appendChild(P2);
+
+            let DivButtons = document.createElement('div');
+            DivButtons.className = 'flex'
+
+            let StartBtn = document.createElement('button');
+            StartBtn.textContent = 'Start';
+            StartBtn.className = 'green';
+            StartBtn.addEventListener('click', () => {
+                Orange.children[1].removeChild(NewArticle);
+                let InPRogressSection = Sections.children[2];
+                NewArticle.children[3].removeChild(StartBtn);
+                let FinishBtn = document.createElement('button');
+                FinishBtn.textContent = 'Finish';
+                FinishBtn.className = 'orange';
+                FinishBtn.addEventListener('click', () => {
+                    let FinishSection = Sections.children[3];
+                    InPRogressSection.children[1].removeChild(NewArticle);
+                    NewArticle.removeChild(DivButtons);
+                    FinishSection.children[1].appendChild(NewArticle);
+                });
+                NewArticle.children[3].appendChild(FinishBtn);
+                InPRogressSection.children[1].appendChild(NewArticle);
+            });
+
+            let DeleteBtn = document.createElement('button');
+            DeleteBtn.textContent = 'Delete';
+            DeleteBtn.className = 'red';
+            DeleteBtn.addEventListener('click', () => {
+                NewArticle.parentNode.removeChild(NewArticle);
+            });
+
+            DivButtons.appendChild(StartBtn);
+            DivButtons.appendChild(DeleteBtn);
+
+            NewArticle.appendChild(DivButtons);
+            Orange.children[1].appendChild(NewArticle)
+        }
+    });
+}
