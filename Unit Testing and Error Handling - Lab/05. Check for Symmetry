@@ -1,0 +1,34 @@
+describe('checkForSymmetry test functionality', () => {
+    it('should return false when input is now correct', () => {
+        let input = 'da';
+        let actualResult = isSymmetric(input);
+        let expected = false;
+        assert.strictEqual(actualResult, expected);
+    });
+    it('should reutn true when input is Symetric', () => {
+        let input = [3, 2, 3];
+        let result = isSymmetric(input);
+        assert.equal(result, true);
+    });
+    it('should return false when input is not Symetric', () => {
+        let input = [1, 2, 3];
+        let result = isSymmetric(input);
+        assert.equal(result, false);
+    });
+    it('should return true when array is emptry', () => {
+        let input = [];
+        let actual = isSymmetric(input);
+        assert.equal(actual,true);
+    })
+    it('should return true when pass string symetricString',()=>{
+        let input=['dad','dad'];
+        let actuac=isSymmetric(input);
+        assert.equal(actuac,true);
+    });
+    it('should return false when pass not symetric string',()=>{
+        let inp=['trix','mix'];
+        let act=isSymmetric(inp);
+        assert.equal(act,false);
+    })
+
+})
