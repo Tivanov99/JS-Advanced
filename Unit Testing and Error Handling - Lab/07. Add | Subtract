@@ -1,0 +1,68 @@
+let createCalculator = require('../addSubtract');
+let assert = require('chai').assert;
+
+describe('check calculator functionality', () => {
+    it('should add single num correctly', () => {
+        let obj = createCalculator();
+        obj.add(10);
+        let ActualResult = obj.get();
+        assert.strictEqual(ActualResult, 10);
+    });
+    it('should add two numbers Correctly', () => {
+        let obj = createCalculator();
+        obj.add(10);
+        obj.add(12);
+        let ActualResult = obj.get();
+        assert.strictEqual(ActualResult, 22);
+    });
+    it('should subtract numbers correctly', () => {
+        let obj = createCalculator();
+        obj.add(10);
+        obj.subtract(11);
+        let actualResult = obj.get();
+        assert.equal(actualResult, -1);
+    });
+    it('should return value which are passed', () => {
+        let obj = createCalculator();
+        obj.subtract(11);
+        let actualResult = obj.get();
+        assert.equal(actualResult, -11);
+    });
+    it('should return NaN when pass something different from number to add methood', () => {
+        let obj = createCalculator();
+        obj.add('da');
+        let actualResult = obj.get();
+        assert.isNaN(actualResult);
+    });
+    it('should return NaN when pass something different from number to subtract methood', () => {
+        let obj = createCalculator();
+        obj.subtract('da');
+        let actualResult = obj.get();
+        assert.isNaN(actualResult);
+    });
+    it('get methood should return zero when doesnt do something', () => {
+        let obj = createCalculator();
+        let actualResult = obj.get();
+        assert.equal(actualResult, 0);
+    });
+    it('get methood should return float point number when pass double to obj', () => {
+        let obj = createCalculator();
+        obj.add(1.1);
+        obj.add(10);
+        let actualResult = obj.get();
+        assert.equal(actualResult, 11.1);
+    });
+    it('get methood should return float point number when pass double to obj', () => {
+        let obj = createCalculator();
+        obj.add(1.1);
+        obj.add(10);
+        let actualResult = obj.get();
+        assert.equal(actualResult, 11.1);
+    });
+    it('get methood should return float point number when pass double to obj', () => {
+        let obj = createCalculator();
+        obj.subtract(11.1);
+        let actualResult = obj.get();
+        assert.equal(actualResult, -11.1);
+    });
+})
