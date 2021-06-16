@@ -1,0 +1,15 @@
+function solve(cardNum, symb) {
+    let Faces = {};
+    Faces['S'] = '♠';
+    Faces['H'] = '♥';
+    Faces['D'] = '♦';
+    Faces['C'] = '♣';
+    let Letters = ['J', 'Q', 'K', 'A'];
+    if (cardNum >= 2 && cardNum <= 10 || Letters.includes(cardNum) && Faces[symb]) {
+     return   ({ [cardNum]: [Faces[symb]],
+        toString:()=>{
+            return(`${cardNum.toUpperCase()}${Faces[symb].toUpperCase()}`);
+        } })
+    }
+    throw new Error('problem');
+}
