@@ -1,0 +1,8 @@
+describe('sum function Test Functionlity', () => {
+    it('should add positive numbers', () => {
+        let input = [1, 2, 3, 4, 5];
+        let actual = sum(input);
+        let expected = 15;
+        assert.strictEqual(actual, expected);
+    });
+});
