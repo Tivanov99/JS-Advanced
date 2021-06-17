@@ -1,0 +1,74 @@
+describe('test mathEnforcer functionality', () => {
+    describe('addFive function', () => {
+        it('should retrun undefinded when pass arg with type different from number', () => {
+            let ActualResult = mathEnforcer.addFive('da');
+            assert.equal(ActualResult, undefined);
+
+            ActualResult = mathEnforcer.addFive({});
+            assert.equal(ActualResult, undefined);
+
+            ActualResult = mathEnforcer.addFive([]);
+            assert.equal(ActualResult, undefined);
+        })
+        it('should retun correctly result when passed number as arg', () => {
+            let AR = mathEnforcer.addFive(10);
+            assert.equal(AR, 15);
+
+            AR = mathEnforcer.addFive(7.5);
+            assert.equal(AR, 12.5);
+
+            AR = mathEnforcer.addFive(-10);
+            assert.equal(AR, -5);
+
+            AR = mathEnforcer.addFive(-6.70);
+            assert.equal(AR, -1.7000000000000002);
+        })
+    });
+    describe('check subtractTen functionality', () => {
+        it('should return undefined when passed agr is not a number', () => {
+            let Result = mathEnforcer.subtractTen('');
+            assert.equal(Result, undefined);
+
+            Result = mathEnforcer.subtractTen([]);
+            assert.equal(Result, undefined);
+
+            Result = mathEnforcer.subtractTen({});
+            assert.equal(Result, undefined);
+        });
+        it('should retun correctly result when pass number as arg', () => {
+            let result = mathEnforcer.subtractTen(10);
+            assert.equal(result, 0);
+
+            result = mathEnforcer.subtractTen(100);
+            assert.equal(result, 90);
+
+            result = mathEnforcer.subtractTen(-100);
+            assert.equal(result, -110);
+
+            result = mathEnforcer.subtractTen(10.1);
+            assert.equal(result, 0.09999999999999964);
+        });
+    });
+    describe('check sum functionality', () => {
+        it('should retun undefind when passed args is not a numbers',()=>{
+            let RES=mathEnforcer.sum('',10);
+            assert.equal(RES,undefined);
+
+            RES=mathEnforcer.sum(10,'');
+            assert.equal(RES,undefined);          
+        });
+        it('should retun correctly when passed args is a numbers',()=>{
+            let RS=mathEnforcer.sum(20,10);
+            assert.strictEqual(RS,30);
+
+            RS=mathEnforcer.sum(-10,-10);
+            assert.strictEqual(RS,-20);
+            
+            RS=mathEnforcer.sum(-10.5,-20.5);
+            assert.strictEqual(RS,-31);
+
+            RS=mathEnforcer.sum(-10,-20.5);
+            assert.strictEqual(RS,-30.5);
+        })
+    });
+})
