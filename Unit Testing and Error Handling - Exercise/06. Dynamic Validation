@@ -1,0 +1,11 @@
+function validate() {
+    let email = document.querySelector('#email');
+    email.addEventListener('change', () => {
+        let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (email.value.match(regex)==null) {
+            email.className = 'error';
+        }else{
+            email.className='';
+        }
+    })
+}
