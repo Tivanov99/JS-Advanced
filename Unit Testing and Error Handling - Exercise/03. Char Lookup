@@ -1,0 +1,48 @@
+describe('chek lookupChar functionality', () => {
+    it('should return undefined when second arg is invalid', () => {
+        let ActualResult = lookupChar('da', -1);
+        assert.equal(ActualResult, "Incorrect index");
+
+        ActualResult = lookupChar('da', 2);
+        assert.equal(ActualResult, "Incorrect index");
+
+        ActualResult = lookupChar('da', 3);
+        assert.equal(ActualResult, "Incorrect index");
+
+        ActualResult=lookupChar('da',[]);
+        assert.equal(ActualResult,undefined);
+
+        ActualResult=lookupChar('da',{});
+        assert.equal(ActualResult,undefined);
+
+        ActualResult = lookupChar('da','da');
+        assert.equal(ActualResult,undefined);
+
+        ActualResult=lookupChar('da',1.1);
+        assert.equal(ActualResult,undefined);
+    });
+    it('should retrun undefinded when first arg is invalid',()=>{
+        let actualResult=lookupChar([],1);
+        assert.equal(actualResult,undefined);
+
+        actualResult=lookupChar({},1);
+        assert.equal(actualResult,undefined);
+
+        actualResult=lookupChar(1.1,1);
+        assert.equal(actualResult,undefined);
+    });
+    it('should return undefined when receive two invalid args',()=>{
+        let ActualResult=lookupChar(1,1,'da');
+        assert.equal(ActualResult,undefined);
+
+        ActualResult=lookupChar({},11.1);
+        assert.equal(ActualResult,undefined);
+    });
+    it('should return correctly result when receive correct args',()=>{
+        let rst=lookupChar('trix',2);
+        assert.strictEqual(rst,'i');
+
+       rst=lookupChar('tri',0);
+       assert.equal(rst,'t');
+    });
+})
