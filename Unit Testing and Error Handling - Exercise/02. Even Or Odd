@@ -1,0 +1,30 @@
+let isOddOrEven = require('../isOddOrEven');
+let assert = require('chai').assert;
+
+describe('chek isOddOrEven function functionality', () => {
+    it('should retrun undefined when passed arg is something else from string', () => {
+        let actualResult = isOddOrEven(1);
+        assert.strictEqual(actualResult, undefined);
+
+        actualResult = isOddOrEven(1, 1);
+        assert.strictEqual(actualResult, undefined);
+
+        actualResult = isOddOrEven([]);
+        assert.strictEqual(actualResult, undefined);
+
+        actualResult = isOddOrEven({});
+        assert.strictEqual(actualResult, undefined);
+
+        actualResult = isOddOrEven(function da(){
+        });
+        assert.strictEqual(actualResult, undefined);
+    });
+    it('should retun odd when passed arg is string and his length is odd',()=>{
+        let ActualResult=isOddOrEven('tri');
+        assert.equal(ActualResult,"odd");
+    });
+   it('should retrun even when passed arg is string and his length is even',function da(){
+        let actualResult=isOddOrEven('trix');
+        assert.equal(actualResult,'even');
+   })
+})
