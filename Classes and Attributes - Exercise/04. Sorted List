@@ -1,0 +1,24 @@
+class List {
+    constructor() {
+        this.Array = [];
+        this.size = 0;
+    }
+    add(element) {
+        this.Array.push(element);
+        this.Array.sort((a, b) => a - b);
+        this.size++;
+        return;
+    }
+    remove(index) {
+        if (index >= 0 && index <= this.Array.length - 1) {
+            this.Array.splice(index, 1);
+            this.size--;
+        }
+        return;
+    }
+    get(index) {
+        if (index >= 0 && index <= this.Array.length - 1) {
+            return this.Array[index];
+        }
+    }
+}
