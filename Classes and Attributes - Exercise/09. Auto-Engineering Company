@@ -1,0 +1,26 @@
+function makeCar(input) {
+    let Brands = {};
+    for (let index = 0; index < input.length; index++) {
+        let splited = input[index].split(' | ');
+        let carBrand = splited[0];
+        let carModel = splited[1];
+        let producedCars = Number(splited[2]);
+
+        if (Brands[carBrand]) {
+            if (Brands[carBrand][carModel]) {
+                Brands[carBrand][carModel] += producedCars;
+                continue;
+            }
+            Brands[carBrand][carModel] = producedCars;
+        } else {
+            Brands[carBrand] = {};
+            Brands[carBrand][carModel] = producedCars;
+        }
+    }
+    for (let brand of Object.entries(Brands)) {
+        console.log(`${brand[0]}`)
+        for (let [model, quantity] of Object.entries(brand[1])) {
+            console.log(`###${model} -> ${quantity}`);
+        }
+    }
+}
