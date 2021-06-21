@@ -1,0 +1,112 @@
+describe('test StringBuilder functionality', () => {
+    describe('Constructor test', () => {
+        it('should thtow when try to initsializate Sb with invalid type value', () => {
+            let SB;
+            assert.throws(() => SB = new StringBuilder(5), TypeError);
+            assert.throws(() => SB = new StringBuilder([]), TypeError);
+            assert.throws(() => SB = new StringBuilder({}), TypeError);
+            assert.throws(() => SB = new StringBuilder(5.1), TypeError);
+            assert.throws(() => SB = new StringBuilder(false), TypeError);
+        })
+        it('should work corrctly when pass string', () => {
+            let SB = new StringBuilder('');
+            assert.equal(SB.toString(), '');
+        })
+        it('should work corrctly when pass undefined', () => {
+            let SB = new StringBuilder(undefined);
+            assert.equal(SB.toString(), '');
+        })
+    })
+    describe('test append methood', () => {
+        it('apped methood should work correctly when passed value is string', () => {
+            let SB = new StringBuilder('yep');
+            SB.append('da');
+            let result = ['yep', 'da'];
+            assert.equal(SB.toString(), result.join(''));
+        })
+        it('append methood should throws when arg is not a string', () => {
+            let SB = new StringBuilder('yep');
+            assert.throws(() => SB.append(5), TypeError);
+            assert.throws(() => SB.append(5.1), TypeError);
+            assert.throws(() => SB.append([]), TypeError);
+            assert.throws(() => SB.append({}), TypeError);
+        })
+    })
+    describe('test prepend methood functionality', () => {
+        it('prepend methood should work correctly when passed value is a string', () => {
+            let SB = new StringBuilder('da');
+            SB.prepend('ne');
+            let result = ['ne', 'da'];
+            assert.equal(SB.toString(), result.join(''));
+        })
+        it('prepend methood should throw when passed arg is not a string', () => {
+            let SB = new StringBuilder('da');
+            assert.throws(() => SB.prepend(5), TypeError);
+            assert.throws(() => SB.prepend([]), TypeError);
+            assert.throws(() => SB.prepend({}), TypeError);
+            assert.throws(() => SB.prepend(5.1), TypeError);
+            assert.throws(() => SB.prepend(undefined), TypeError);
+        })
+    })
+    describe('test insertAt methood functionality', () => {
+        it('insertAt methood should work correctly when received param type is string', () => {
+            let s = new StringBuilder('da');
+            let result = ['da', undefined, undefined, 'ne'];
+            s.insertAt('ne', 3);
+            assert.equal(s.toString(), result.join(''));
+        })
+        it('insertAt methood should throw  when received param type is not a string', () => {
+            let S = new StringBuilder('da');
+            assert.throws(() => S.insertAt(5, 3), TypeError);
+        })
+    })
+    describe('test remove methood functionality', () => {
+        it('test remove methood', () => {
+            let S = new StringBuilder('da');
+            S.append('bla');
+            S.append('ne');
+            S.append('be');
+            S.append('na');
+            let result = ['be', 'na'];
+            S.remove(0, 7);
+            assert.equal(S.toString(), result.join(''));
+        })
+        it('test with second parameter zero', () => {
+            let S = new StringBuilder('da');
+            S.append('t');
+            S.append('r');
+            S.append('i');
+            let result = ['da', 't', 'r', 'i'];
+            S.remove(0, 0);
+            assert.equal(S.toString(), result.join(''));
+        })
+        it('test with biggest lentgh than array', () => {
+            let S = new StringBuilder('da');
+            S.remove(0, 3);
+            let rs = [''];
+            assert.equal(S.toString(), rs.join(''));
+        })
+        it('test with empty array', () => {
+            let S = new StringBuilder('da');
+            S.remove(0, 3);
+            let rs = [''];
+            S.remove(0, 5);
+            assert.equal(S.toString(), rs.join(''));
+        })
+    })
+    describe('test _vrfyParam methood', () => {
+        it('should throw TypeError when passed something else from string', () => {
+            let S;
+            assert.throws(() => S == new StringBuilder(5), TypeError);
+        })
+    })
+    describe('test toString methood', () => {
+        it('test toString',()=>{
+            let STR = new StringBuilder('da');
+            STR.append('ne');
+            let RES = ['da', 'ne'];
+            assert.equal(STR.toString(),RES.join(''));
+        })
+       
+    })
+})
