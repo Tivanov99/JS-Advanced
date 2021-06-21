@@ -1,0 +1,72 @@
+describe('test PaymentPackage functionality', () => {
+    it('should initsializate correctly Paymant and property getters', () => {
+        let paymnat = new PaymentPackage('trix', 22);
+        assert.equal(paymnat.name, 'trix');
+        assert.strictEqual(paymnat.value, 22);
+        assert.equal(paymnat.VAT, 20);
+        assert.equal(paymnat.active, true);
+    })
+
+    it('name setter should throws when passed value is not a string or a emptry string', () => {
+        let paymannt = new PaymentPackage('trix', 22);
+        assert.throws(() => paymannt.name = 5, Error);
+        assert.throws(() => paymannt.name = '', Error);
+        assert.throws(() => paymannt.name = -1, Error);
+        assert.throws(() => paymannt.name = 1.1, Error);
+        assert.throws(() => paymannt.name = {}, Error);
+        assert.throws(() => paymannt.name = [], Error);
+        assert.throws(() => paymannt.name = false, Error);
+    })
+    it('name setter should work correctly when passed value is valid', () => {
+        let pay = new PaymentPackage('trix', 22);
+        pay.name = 'rali';
+        assert.equal(pay.name, 'rali');
+    })
+    it('value setter should throws when passed value is not a number is less than Zero', () => {
+        let paym = new PaymentPackage('trix', 22);
+        assert.throws(() => paym.value = -1, Error);
+        assert.throws(() => paym.value = 'string', Error);
+        assert.throws(() => paym.value = '', Error);
+        assert.throws(() => paym.value = {}, Error);
+        assert.throws(() => paym.value = [], Error);
+        assert.throws(() => paym.value = false, Error);
+    })
+    it('value setter should work correctly when passed value is valid number', () => {
+        let paymn = new PaymentPackage('trix', 22);
+        paymn.value = 23;
+        assert.equal(paymn.value, 23);
+    })
+    it('VAT setter should throws when passed value is not a number or is less than zero', () => {
+        let paymnt = new PaymentPackage('trix', 22);
+        assert.throws(() => paymnt.VAT = -1, Error);
+        assert.throws(() => paymnt.VAT = '', Error);
+        assert.throws(() => paymnt.VAT = {}, Error);
+        assert.throws(() => paymnt.VAT = [], Error);
+        assert.throws(() => paymnt.VAT = false, Error);
+    })
+    it('VAT setter shold work correctly when passed valid data', () => {
+        let pay = new PaymentPackage('trix', 22);
+        pay.VAT = 30;
+        assert.equal(pay.VAT, 30);
+    })
+    it('active setter should throws when receive something else from boolean value', () => {
+        let pay = new PaymentPackage('trix', 22);
+        assert.throws(() => pay.active = '', Error);
+        assert.throws(() => pay.active = 1, Error);
+        assert.throws(() => pay.active = 1.1, Error);
+        assert.throws(() => pay.active = {}, Error);
+        assert.throws(() => pay.active = [], Error);
+    })
+    it('active setter should work correctly when receive boolean value', () => {
+        let pay = new PaymentPackage('trix', 22);
+        pay.active = false;
+        assert.equal(pay.active, false);
+    })
+    it('test toString Methood', () => {
+        let pay = new PaymentPackage('trix', 22);
+        let result = ['Package: trix',
+            '- Value (excl. VAT): 22',
+            '- Value (VAT 20%): 26.4'];
+            assert.equal(pay.toString(),result.join('\n'));
+    })
+})
