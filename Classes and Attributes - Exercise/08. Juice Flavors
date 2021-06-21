@@ -1,0 +1,41 @@
+function create(arr) {
+    let MyMap = {};
+    let Bottles = {};
+    let PositionOfCreate = new Set();
+    for (let index = 0; index < arr.length; index++) {
+        let CurrentProduct = arr[index].split(' => ');
+        let ProductName = CurrentProduct[0];
+        let CurrectQuantity = Number(CurrentProduct[1]);
+
+        if (MyMap[ProductName]) {
+            MyMap[ProductName] += CurrectQuantity;
+            if (MyMap[ProductName] >= 1000) {
+                let Count = Number.parseInt(MyMap[ProductName] / 1000);
+                if (Bottles[ProductName]) {
+                    Bottles[ProductName] += Count;
+                } else {
+                    Bottles[ProductName] = Count;
+                }
+                MyMap[ProductName] -= Count * 1000;
+                continue;
+            }
+            MyMap[ProductName] += CurrectQuantity;
+        } else {
+            if (CurrectQuantity >= 1000) {
+                let Count = Number.parseInt(CurrectQuantity / 1000);
+                Bottles[ProductName] = Count;
+                CurrectQuantity -= Count * 1000;
+                PositionOfCreate.add(ProductName);
+            }
+            MyMap[ProductName] = CurrectQuantity;
+        }
+    }
+    let Result = [];
+    for (let el of PositionOfCreate) {
+        console.log(`${el} => ${Bottles[el]}`);
+        delete Bottles[el];
+    }
+    for(let [el,count] of Object.entries(Bottles)){
+        console.log(`${el} => ${count}`)
+    }
+}
