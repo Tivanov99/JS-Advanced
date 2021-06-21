@@ -1,0 +1,57 @@
+class Company {
+    constructor() {
+        this.departments = new Map();
+    }
+    addEmployee(username, Salary, Position, Department) {
+        if (username == '' || Salary == '' || Position == '' || Department == '' || Salary < 0) {
+            throw new Error("Invalid input!");
+        }
+        if (this.departments[Department]) {
+            this.departments[Department].push({ username, Salary, Position });
+        } else {
+            this.departments[Department] = [];
+            this.departments[Department].push({ username, Salary, Position });
+        }
+        return `New employee is hired. Name: ${username}. Position: ${Position}`;
+    }
+    bestDepartment() {
+        let bestDepartment;
+        let BestEmployee;
+        let entries = Object.entries(this.departments);
+        for (let [Department, Employees] of entries) {
+            for (let employee of Employees) {
+                if (BestEmployee == undefined || BestEmployee.Salary < employee.Salary) {
+                    BestEmployee = employee;
+                    if (bestDepartment !== Department) {
+                        bestDepartment = Department;
+                    }
+                }
+            }
+        }
+        function allEmployes(department) {
+            let result = [];
+            for (let emp of department) {
+                result.push(`${emp.username} ${emp.Salary} ${emp.Position}`)
+            }
+            return result;
+        }
+
+        this.departments[bestDepartment] = this.departments[bestDepartment].sort((a, b) => {
+            if (a.Salary > b.Salary) {
+                return 1;
+            } else if (a.Salary < b.Salary) {
+                return -1;
+            }
+            if (a.username > b.username) {
+                return -1;
+            } else if (a.username < b.username) {
+                return 1;
+            }
+        });
+        let ar = this.departments[bestDepartment].reverse();
+        let AverageSalary = ar.reduce((a, b) => a + b.Salary, 0);
+        AverageSalary = AverageSalary / ar.length;
+        let Emp = allEmployes(ar);
+        return `Best Department is: ${bestDepartment}\nAverage salary: ${AverageSalary.toFixed(2)}\n${Emp.join('\n')}`;
+    }
+}
