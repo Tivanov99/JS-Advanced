@@ -1,0 +1,17 @@
+function Person(firstName, lastName) {
+    this.firstName = firstName,
+        this.lastName = lastName,
+
+        Object.defineProperty(this, 'fullName', {
+            set: function (value) {
+                let splited = value.split(' ');
+                if (typeof (value) == 'string' && splited.length == 2) {
+                    this.firstName = splited[0];
+                    this.lastName = splited[1];
+                }
+            },
+            get: function () {
+                return `${this.firstName} ${this.lastName}`
+            }
+        })
+}
